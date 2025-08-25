@@ -22,19 +22,19 @@ function App() {
       // Update existing employee
       setEmployees(
         employees.map((emp) =>//loop through each employee object
-          emp.id === editingEmployee.id ? { ...employee, id: emp.id } : emp
+          emp.id === editingEmployee.id ? { ...employee, id: emp.id } : emp //or return the same object as it is
         )                                             //id stays the same
       );
       setEditingEmployee(null); // reseting editing state
     } else {
-      // Add new employee
-      setEmployees([...employees, { ...employee, id: Date.now() }]);
+      // Add new employee if editingEmployee is null
+      setEmployees([...employees, { ...employee, id: Date.now() + Math.random() }]);
     }
   };
 
   const deleteEmployee = (id) => {
-    setEmployees(employees.filter((emp) => emp.id !== id));
-    if (editingEmployee && editingEmployee.id === id) setEditingEmployee(null);
+    setEmployees(employees.filter((emp) => emp.id !== id)); //leaves everything except for the emp with matching id
+    if (editingEmployee && editingEmployee.id === id) setEditingEmployee(null); //eza kena 3am na3mol edit la employee w 3melna delete b nafs l wa2et byen3amal reset lal editing state
   };
 
   const editEmployee = (id) => {
